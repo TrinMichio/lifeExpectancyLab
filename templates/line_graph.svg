@@ -1,5 +1,51 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 500" width="500" height="500">
 
-     <text x="250" y="250" text-anchor="middle">Insert your line graph here</text>
+    <text x="100" y="30" font-size="25">Life Expectancy per Country</text>
+
+     <text x="30" y="100" font-size="8" transform="rotate(-90, 30, 100)">Life Expectancy (Years)</text>
+     <text x="455" y="484" font-size="8">Years</text>
+    <line x1="15" y1="20" x2="15" y2="484" stroke="black" stroke-width="1" />
+    <line x1="15" y1="484" x2="450" y2="484" stroke="black" stroke-width="1" />
+
+     <text x="410" y="300" font-size="14" fill="green">United States</text>
+     <text x="410" y="330" font-size="14" fill="blue">Canada</text>
+     <text x="410" y="360" font-size="14" fill="red">Mexico</text>
+     <text x="410" y="390" font-size="14" fill="black">Average</text>
+
+     <polyline class="lines" stroke="green"
+     points="
+     {% for point in data['United States'].values()%}
+          {{15 + loop.index0 * 7}},{{1420 - (point|float) * 17}}
+     {% endfor %}"
+     />
+     <polyline class="lines" stroke="blue"
+     points="
+     {% for point in data['Canada'].values()%}
+          {{15 + loop.index0 * 7}},{{1420 - (point|float) * 17}}
+     {% endfor %}"
+     />
+     <polyline class="lines" stroke="red"
+     points="
+     {% for point in data['Mexico'].values()%}
+          {{15 + loop.index0 * 7}},{{1420 - (point|float) * 17}}
+     {% endfor %}"
+     />
+
+     <polyline class="lines" stroke="black" stroke-dasharray="5,5"
+     points="
+     {% for point in avg%}
+          {{15 + loop.index0 * 7}},{{1420 - (point|float) * 17}}
+     {% endfor %}"
+     />
+
+
+    {% for i in range(7) %}
+    <line x1="{{15 + i*70}}" y1="490" x2="{{15 + i*70}}" y2="484" stroke="black" stroke-width="1" />
+    <text x="{{15 + i*68}}" y="497" font-size="8">{{1960+i*10}}</text>
+    {% endfor %}
+    {% for i in range(7) %}
+    <line x1="15" y1="{{20 + i*66}}" x2="20" y2="{{20 + i*66}}" stroke="black" stroke-width="1" />
+    <text x="5" y="{{20 + i*66}}" font-size="8">{{81-i*3.7|int}}</text>
+    {% endfor %}
 
 </svg>
